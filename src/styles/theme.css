@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-text));
+  }
+  
+  #root {
+    min-height: 100vh;
+  }
+  
+  :root {
+    /* Dark Premium Theme - Background colors */
+    --color-background: 10 10 12; /* Quase preto */
+    --color-surface: 23 23 28; /* Grafite escuro */
+    
+    /* Text colors */
+    --color-text: 245 245 250; /* Branco suave */
+    --color-text-muted: 161 161 170; /* Cinza suave */
+    
+    /* Accent colors - Vinho/vermelho profundo */
+    --color-accent: 127 29 29; /* Vermelho profundo */
+    --color-accent-hover: 153 27 27; /* Vermelho profundo hover */
+    
+    /* Status colors */
+    --color-danger: 239 68 68;
+    --color-success: 34 197 94;
+    --color-warning: 245 158 11;
+    
+    /* Border - Sutil com opacidade */
+    --color-border: 39 39 42; /* Grafite médio com opacidade baixa */
+  }
+  
+  [data-theme="light"] {
+    /* Light theme fallback (caso precise no futuro) */
+    --color-background: 255 255 255;
+    --color-surface: 249 250 251;
+    --color-text: 17 24 39;
+    --color-text-muted: 107 114 128;
+    --color-accent: 99 102 241;
+    --color-accent-hover: 79 70 229;
+    --color-danger: 239 68 68;
+    --color-success: 34 197 94;
+    --color-warning: 245 158 11;
+    --color-border: 229 231 235;
+  }
+  
+  /* Safe area support */
+  .safe-area {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+@layer components {
+  .input {
+    @apply w-full px-4 py-3 bg-surface border border-border/50 rounded-lg text-base text-text placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/30 transition-all duration-200;
+  }
+  
+  .input-error {
+    @apply border-danger/50 focus:ring-danger/50;
+  }
+  
+  .error-message {
+    @apply p-4 bg-danger/10 border border-danger/20 rounded-lg text-danger text-sm md:text-base;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "login": {
+    "title": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "error": "Error signing in. Please check your credentials."
+  },
+  "home": {
+    "title": "LS Games",
+    "games": "Games",
+    "gamesSubtitle": "Manage your games and matches",
+    "participants": "Participants",
+    "participantsSubtitle": "Control players and teams",
+    "challenges": "Dares",
+    "challengesSubtitle": "Create and track challenges"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "selectLanguage": "Select language",
+    "signOut": "Sign Out"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "back": "Back"
+  }
+}

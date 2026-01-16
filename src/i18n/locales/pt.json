@@ -1,0 +1,29 @@
+{
+  "login": {
+    "title": "Entrar",
+    "email": "E-mail",
+    "password": "Senha",
+    "signIn": "Entrar",
+    "error": "Erro ao fazer login. Verifique suas credenciais."
+  },
+  "home": {
+    "title": "LS Games",
+    "games": "Jogos",
+    "gamesSubtitle": "Gerencie seus jogos e partidas",
+    "participants": "Participantes",
+    "participantsSubtitle": "Controle de jogadores e equipes",
+    "challenges": "Desafios",
+    "challengesSubtitle": "Crie e acompanhe desafios"
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "selectLanguage": "Selecionar idioma",
+    "signOut": "Sair"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "back": "Voltar"
+  }
+}

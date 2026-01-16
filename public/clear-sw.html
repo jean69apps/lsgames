@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpar Service Worker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #4f46e5;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+        .success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Limpar Service Worker</h1>
+        <p>Use este utilitário para desregistrar todos os service workers registrados neste domínio.</p>
+        <button onclick="clearServiceWorkers()">Desregistrar Service Workers</button>
+        <button onclick="clearCache()">Limpar Cache</button>
+        <button onclick="clearAll()">Limpar Tudo</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function clearServiceWorkers() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = '';
+            
+            if ('serviceWorker' in navigator) {
+                try {
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    let count = 0;
+                    
+                    for (let registration of registrations) {
+                        await registration.unregister();
+                        count++;
+                        console.log('Service Worker desregistrado:', registration.scope);
+                    }
+                    
+                    if (count > 0) {
+                        resultDiv.className = 'success';
+                        resultDiv.textContent = `✓ ${count} service worker(s) desregistrado(s) com sucesso!`;
+                    } else {
+                        resultDiv.className = 'success';
+                        resultDiv.textContent = '✓ Nenhum service worker encontrado.';
+                    }
+                } catch (error) {
+                    resultDiv.className = 'error';
+                    resultDiv.textContent = '✗ Erro ao desregistrar: ' + error.message;
+                }
+            } else {
+                resultDiv.className = 'success';
+                resultDiv.textContent = '✓ Service Workers não são suportados neste navegador.';
+            }
+        }
+
+        async function clearCache() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = '';
+            
+            try {
+                if ('caches' in window) {
+                    const cacheNames = await caches.keys();
+                    await Promise.all(cacheNames.map(name => caches.delete(name)));
+                    resultDiv.className = 'success';
+                    resultDiv.textContent = `✓ ${cacheNames.length} cache(s) limpo(s) com sucesso!`;
+                } else {
+                    resultDiv.className = 'success';
+                    resultDiv.textContent = '✓ Cache API não disponível.';
+                }
+            } catch (error) {
+                resultDiv.className = 'error';
+                resultDiv.textContent = '✗ Erro ao limpar cache: ' + error.message;
+            }
+        }
+
+        async function clearAll() {
+            await clearServiceWorkers();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await clearCache();
+        }
+
+        // Auto-executar ao carregar
+        window.addEventListener('load', () => {
+            clearServiceWorkers();
+        });
+    </script>
+</body>
+</html>
