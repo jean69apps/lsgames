@@ -10,13 +10,14 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.38.4",
+    "i18next": "^23.7.6",
+    "lucide-react": "^0.562.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0",
-    "@supabase/supabase-js": "^2.38.4",
-    "zustand": "^4.4.7",
     "react-i18next": "^13.5.0",
-    "i18next": "^23.7.6"
+    "react-router-dom": "^6.20.0",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
